@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+
+    <link href="libraries/bootstrap.min.css" rel="stylesheet" />
+    <link href="libraries/bootstrap-icons.css" rel="stylesheet" />
+    <title>BNET FTP</title>
+</head>
+
+<body class="bg-body p-2">
+
+    <div class="container-fluid">
+
+        <!-- App Icon & Title -->
+        <div class="text-center mb-3 pt-3">
+            <img src="images/icon.png" class="mb-2" width="100" height="100" alt="FTP Icon">
+            <h5 class="fw-bold mb-0">BNET FTP Server</h5>
+            <small class="text-muted">Lightweight local FTP service</small>
+        </div>
+
+        <!-- Header -->
+        <div class="row align-items-start mb-3">
+            <div class="col-10">
+                <div class="small text-muted">
+                    <i class="bi bi-link-45deg me-1"></i>
+                    <span class="fw-bold">Endpoint</span><br>
+                    <span id="Label_Connection" class="text-break">
+                        ftp://0.0.0.0:8040
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-2 text-end">
+                <button id="themeToggle" class="btn btn-sm btn-dark">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Action Card -->
+        <div class="card shadow-sm mb-3" onclick="Service()">
+            <div class="card-body d-flex align-items-center gap-3">
+                <i id="Icon_RunService"
+                   class="bi bi-play-circle fs-2 text-success"></i>
+
+                <div class="flex-grow-1">
+                    <div id="Label_RunService" class="fw-semibold">
+                        Start FTP Service
+                    </div>
+                    <small class="text-muted">
+                        Enable FTP access on this device
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="card shadow-sm d-none">
+            <div class="card-body">
+                <div class="fw-semibold mb-2">
+                    <i class="bi bi-info-circle me-1"></i>
+                    How to use
+                </div>
+
+                <ol class="small text-muted mb-0 ps-3">
+                    <li>Tap <strong>Start FTP Service</strong>.</li>
+                    <li>Copy the <strong>Endpoint</strong> shown above.</li>
+                    <li>
+                        Open your system <strong>File Explorer</strong> and paste the
+                        endpoint in the address bar.
+                    </li>
+                    <li>
+                        You can also connect using an FTP client
+                        (FileZilla, WinSCP, etc.).
+                    </li>
+                    <li>Browse, upload, and download files.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="card shadow-sm rounded-3 mt-3">
+            <div class="card-header bg-body-tertiary fw-bold">
+                <i class="bi bi-terminal me-1"></i> FTP Logs
+            </div>
+            <div id="log" class="card-body bg-dark text-light p-2" style="font-size:10px;height: 400px; overflow-y: auto; font-family: monospace; white-space: pre;"></div>
+        </div>
+
+    </div>
+
+    <script src="libraries/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const toggleButton = document.querySelector('#themeToggle');
+        const toggleIcon = document.querySelector('#themeToggle i');
+        const html = document.documentElement;
+
+        function updateIcon() {
+            if (html.getAttribute('data-bs-theme') === 'dark') {
+                toggleIcon.className = 'bi bi-sun-fill';
+                toggleButton.className = 'btn btn-sm btn-light';
+            } else {
+                toggleIcon.className = 'bi bi-moon-stars-fill';
+                toggleButton.className = 'btn btn-sm btn-dark';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) html.setAttribute('data-bs-theme', savedTheme);
+        updateIcon();
+
+        toggleButton.addEventListener('click', () => {
+            const newTheme =
+                html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon();
+        });
+
+        function Service() {
+            var iconClassName =
+                document.getElementById('Icon_RunService').className;
+            window.ScriptContext.Service(iconClassName);
+        }
+    </script>
+</body>
+</html>
