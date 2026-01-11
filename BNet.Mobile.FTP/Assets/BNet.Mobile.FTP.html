@@ -13,7 +13,9 @@
 <body class="bg-body p-2">
 
     <div class="container-fluid">
-
+        <button type="button" style="position:fixed;top:10px;right:10px;" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#howToModal">
+            <i class="bi bi-info-circle me-1"></i> How to use
+        </button>
         <!-- App Icon & Title -->
         <div class="text-center mb-3 pt-3">
             <img src="images/icon.png" class="mb-2" width="100" height="100" alt="FTP Icon">
@@ -56,38 +58,42 @@
                 </div>
             </div>
         </div>
-
-        <!-- Instructions -->
-        <div class="card shadow-sm d-none">
-            <div class="card-body">
-                <div class="fw-semibold mb-2">
-                    <i class="bi bi-info-circle me-1"></i>
-                    How to use
-                </div>
-
-                <ol class="small text-muted mb-0 ps-3">
-                    <li>Tap <strong>Start FTP Service</strong>.</li>
-                    <li>Copy the <strong>Endpoint</strong> shown above.</li>
-                    <li>
-                        Open your system <strong>File Explorer</strong> and paste the
-                        endpoint in the address bar.
-                    </li>
-                    <li>
-                        You can also connect using an FTP client
-                        (FileZilla, WinSCP, etc.).
-                    </li>
-                    <li>Browse, upload, and download files.</li>
-                </ol>
-            </div>
-        </div>
         <div class="card shadow-sm rounded-3 mt-3">
             <div class="card-header bg-body-tertiary fw-bold">
                 <i class="bi bi-terminal me-1"></i> FTP Logs
             </div>
             <div id="log" class="card-body bg-dark text-light p-2" style="font-size:10px;height: 400px; overflow-y: auto; font-family: monospace; white-space: pre;"></div>
         </div>
-
     </div>
+
+
+
+    <!-- How to Use Modal -->
+    <div class="modal fade" id="howToModal" tabindex="-1" aria-labelledby="howToModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="howToModalLabel">
+                        <i class="bi bi-info-circle me-1"></i> How to Use
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ol class="small mb-0 ps-3">
+                        <li>Tap <strong>Start FTP Service</strong>.</li>
+                        <li>Copy the <strong>Endpoint</strong> shown above.</li>
+                        <li>Open your system <strong>File Explorer</strong> and paste the endpoint in the address bar.</li>
+                        <li>You can also connect using an FTP client (FileZilla, WinSCP, etc.).</li>
+                        <li>Browse, upload, and download files.</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="libraries/bootstrap.bundle.min.js"></script>
 
